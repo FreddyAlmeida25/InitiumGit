@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+@using (Html.BeginForm("Guardar", "Home", FormMethod.Post, new { name = "frmCrear", id = "frmCrear" }))
+{
+    <div class="form-group">
+        <label for="cedula">Cedula:</label>
+        <input type="text" class="form-control" id="cedula" name="cedula">
+    </div>
+    <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" class="form-control" id="nombre" name="nombre">
+    </div>
+    <button type="submit" class="btn btn-default" style="border:2px solid #808080">Agregar</button>
+}
+<div style="width:80%; margin-left:auto;margin-right:auto;">
+    <div style="width:50%;float:left">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>H.Entrada</th>
+                    <th>H.Salida</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (ViewBag.cola1 != null)
+                {
+                    foreach (var item in (List<DAL.Entity.ClienteEntity>)ViewBag.cola1)
+                    {
+                    <tr>
+                        <td>@item.nombre</td>
+                        <td>@item.fechainicio.TimeOfDay</td>
+                        <td>@item.fechafin.TimeOfDay</td>
+                    </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    <div style="width:50%;float:left">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>H.Entrada</th>
+                    <th>H.Salida</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (ViewBag.cola1 != null)
+                {
+                    foreach (var item in (List<DAL.Entity.ClienteEntity>)ViewBag.cola2)
+                    {
+                        <tr>
+                            <td>@item.nombre</td>
+                            <td>@item.fechainicio.TimeOfDay</td>
+                            <td>@item.fechafin.TimeOfDay</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
